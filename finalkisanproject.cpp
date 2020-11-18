@@ -2,8 +2,6 @@
 1 farmer class
 a storeCropData
 b showCropData
-c signin
-d signup
 e cropsale
 f byeingmanure
 g CheckUserId
@@ -15,6 +13,7 @@ i CheckUserName
 
 
 #include<bits/stdc++.h>
+#include<iostream>
 #include<fstream>
 #include<stdio.h>
 #include<conio.h>
@@ -22,6 +21,9 @@ i CheckUserName
 #include<string.h>
 #include<ctype.h>
 #include<math.h>
+#include<cmath>
+#include<stdlib.h>
+#include<process.h>
 
 using namespace std;
 
@@ -34,24 +36,24 @@ void WRITECROP();
 void READCROP();
 void WRITEMANURE();
 void READMANURE();
-void SEARCH_KisanId();
+void SEARCH_KISANID();
 void SEARCH_USERNAME();
 void SHOPPING_SEARCH();
 void DELETION1();
 void DELETION2();
 void DELETION();
-void marketplace();
+void MARKETPLACE();
 void TOTAL_REC();
-void mfdetail();
-void sfdetail();
-void smfdetail();
-void mediumfdetail();
-void lfdetail();
+void MFDETAIL();
+void SFDETAIL();
+void SMFDETAIL();
+void MEDIUMFDETAIL();
+void LFDETAIL();
 void FARMER_DETAIL();
 void ADMIN_PANEL();
-void login();
-void registr();
-void forgot();
+void SIGN_IN();
+void SIGN_UP();
+void FORGOT();
 
 
 
@@ -65,7 +67,7 @@ public:
 	char UserName[50];
 	char cropname[50];
 	char manurename[50];
-	int  KisanId;
+	int  KISANID;
 	char firstname[50];
 	char secondname[50];
     char unit[50];
@@ -96,17 +98,17 @@ public:
 			 UserName[0]='\0';
 	        cropname[0]='\0';
 	        manurename[0]='\0';
-			KisanId=0;
+			KISANID=0;
 			firstname[0]='\0';
 			secondname[0]='\0';
 			gmail[0]='\0';
 			unit[0]='\0';
 
 		}
-		farmer(char UserName, int KisanId, char firstname, char secondname, int password, int qty, char cropname, char manurename, char date, char unit, char laboursname, char village, char post, char block, char district, char mono)
+		farmer(char UserName, int KISANID, char firstname, char secondname, int password, int qty, char cropname, char manurename, char date, char unit, char laboursname, char village, char post, char block, char district, char mono)
 		{
 			// parametrized constructor
-		KisanId=KisanId;
+		KISANID=KISANID;
 		UserName=UserName;
 		firstname=firstname;
 		secondname=secondname;
@@ -127,7 +129,7 @@ public:
 		farmer(farmer &f)
 		{
 			// copy constructor
-		    KisanId=f.KisanId;
+		    KISANID=f.KISANID;
 		    strcpy(UserName, f.UserName);
 			strcpy(firstname, f.firstname);
 			strcpy(secondname, f.secondname);
@@ -148,18 +150,13 @@ public:
 		}
 // prototype or signature
 
-     void storeCropData();
+     void CROP_SALE();
      void showCropData();
-     void storeManureData();
+     void MANURE_BUYING();
      void showManureData();
      void LaboursFound();
      void LaboursFoundSD();
-
-   // friend void signin(farmer &f1);// friend function
-    int CheckKisanId();
-//	void signup();
-	void cropsale();
-    void buyeingmanure();
+    int CheckKISANID();
     char*CheckUserName();
     char*Checklaboursname();
     char*Checkvillage();
@@ -170,21 +167,21 @@ public:
 void farmer::LaboursFound()
 {
 	cout<<"Welcome to Labours found portal"<<endl;
-	cout<<"Labours Name :"<<endl;
+	cout<<"Labours Name :";
 	cin>>laboursname;
 	cin.ignore();
 
 	cin.getline(mono, 15);
 	cout<<"Address :"<<endl;
-	cout<<"Village or city Name :"<<endl;
+	cout<<"Village or city Name :";
 	cin>>village;
 	cout<<"post :"<<endl;
 	cin>>post;
-	cout<<"Block :"<<endl;
+	cout<<"Block :";
 	cin>>block;
-	cout<<"District :"<<endl;
+	cout<<"District :";
 	cin>>district;
-		cout<<"mobile Number :"<<endl;
+		cout<<"mobile Number :";
 	cin>>mono;
 
 
@@ -200,7 +197,7 @@ void farmer::LaboursFoundSD()
 	cout<<"mobile Number :"<<mono<<endl;
 	cout<<"Address :"<<endl;
 	cout<<"Village or city :"<<village<<"      "<<"post :"<<post<<endl;
-	cout<<"Block :"<<block<<"          "<<"District :"<<district<<endl;
+	cout<<"Block :"<<block<<"          "<<"District :"<<district;
 
 
 }
@@ -208,7 +205,7 @@ void farmer::LaboursFoundSD()
 
 	void WRITE_LABOURS_FOUND()
 {
-    ofstream r("record.txt",ios::binary | ios::app);
+    ofstream r("labours.txt",ios::binary | ios::app);
     farmer f;
     char reply;
     do
@@ -233,7 +230,7 @@ char*farmer::Checkvillage()
 
 void SEARCH_LABOURSNAME()
 {
-    ifstream r("record.txt",ios::in | ios::binary);
+    ifstream r("labours.txt",ios::in | ios::binary);
     char found='N';
      farmer f;
     if(!r)
@@ -265,7 +262,7 @@ void SEARCH_LABOURSNAME()
 
 void SEARCH_VILLAGE()
 {
-    ifstream r("record.txt",ios::in | ios::binary);
+    ifstream r("labours.txt",ios::in | ios::binary);
     char found='N';
      farmer f;
     if(!r)
@@ -320,10 +317,10 @@ void LABOURSFOUNDPORTAL()
 	int c;
 	cout<<"****************************************************************************************\n\n";
 	
-	cout<<"                         Welcome to Labours found portal                            "<<endl;
+	cout<<"                         WELCOME TO LABOURSFOUND PORTAL                            \n\n"<<endl;
 	
 	cout<<"********************                                           ***********************\n\n";
-	cout<<"1. Register for wages "<<endl;
+	cout<<"1. Labourers registration "<<endl;
 	cout<<"2. Find Labours "<<endl;
 	cout<<"choose the option as per your choice ---";
 	cin>>c;
@@ -339,12 +336,12 @@ void LABOURSFOUNDPORTAL()
 }
 
 
-void farmer::storeCropData()
+void farmer::CROP_SALE()
 {
 //cout<<"Welcome to Market Place "<<endl;
 cout<<"Suitable time for crop sale : ";
-     cout<<"\n Enter Your KisanId : ";
-     cin>>KisanId;
+     cout<<"\n Enter Your KISANID : ";
+     cin>>KISANID;
      cout<<"Enter your user name :";
      cin>>UserName;
      cout<<"\n Enter your crop name :";
@@ -360,7 +357,7 @@ cout<<"Suitable time for crop sale : ";
 
 void farmer::showCropData()
 {
-        cout<<endl<<"KisanId: "<<KisanId;
+        cout<<endl<<"KISANID: "<<KISANID;
         cout<<endl<<"User Name :"<<UserName;
         cout<<endl<<"Crop name : "<<cropname;
         cout<<endl<<"Crop quantity : "<<qty<<unit;
@@ -368,12 +365,12 @@ void farmer::showCropData()
 
 }
 
-void farmer::storeManureData()
+void farmer::MANURE_BUYING()
 {
 //cout<<"Welcome to Market Place "<<endl;
 cout<<"Suitable time for crop sale : ";
-     cout<<"\n Enter Your KisanId : ";
-     cin>>KisanId;
+     cout<<"\n Enter Your KISANID : ";
+     cin>>KISANID;
      cout<<"Enter your user name :"<<endl;
      cin>>UserName;
      cout<<"\n Enter  Manure name :";
@@ -388,7 +385,7 @@ cout<<"Suitable time for crop sale : ";
 
 void farmer::showManureData()
 {
-        cout<<endl<<"KisanId: "<<KisanId;
+        cout<<endl<<"KISANID: "<<KISANID;
          cout<<endl<<"User Name :"<<UserName;
         cout<<endl<<"Crop name : "<<cropname;
         cout<<endl<<"Crop quantity : "<<qty<<unit;
@@ -399,9 +396,9 @@ void farmer::showManureData()
 
 
 
-int farmer::CheckKisanId()
+int farmer::CheckKISANID()
 {
-    return(KisanId);
+    return(KISANID);
 }
 
 char*farmer::CheckUserName()
@@ -411,12 +408,12 @@ char*farmer::CheckUserName()
 
 	void WRITECROP()
 {
-    ofstream r("record.txt",ios::binary | ios::app);
+    ofstream r("market.txt",ios::binary | ios::app);
     farmer f;
     char reply;
     do
     {
-        f.storeCropData();
+        f.CROP_SALE();
         r.write((char*)&f,sizeof(f));
         cout<<"Your orderd is successful !! Are you want to more purchase !";
         cin>>reply;
@@ -428,7 +425,7 @@ char*farmer::CheckUserName()
 
 	void READCROP()
 {
-    ifstream r("record.txt",ios::binary | ios::in);
+    ifstream r("market.txt",ios::binary | ios::in);
     farmer f;
 
     if(!r)
@@ -450,12 +447,12 @@ char*farmer::CheckUserName()
 
 	void WRITEMANURE()
 {
-    ofstream r("record.txt",ios::binary | ios::app);
+    ofstream r("market.txt",ios::binary | ios::app);
     farmer f;
     char reply;
     do
     {
-        f.storeManureData();
+        f.MANURE_BUYING();
         r.write((char*)&f,sizeof(f));
         cout<<"Your orderd is successful !! Are you want to more purchase !";
         cin>>reply;
@@ -467,7 +464,7 @@ char*farmer::CheckUserName()
 
 	void READMANURE()
 {
-    ifstream r("record.txt",ios::binary | ios::in);
+    ifstream r("market.txt",ios::binary | ios::in);
     farmer f;
 
     if(!r)
@@ -486,9 +483,9 @@ char*farmer::CheckUserName()
 }
 
 
-void SEARCH_KisanId()
+void SEARCH_KISANID()
 {
-    ifstream r("record.txt",ios::in | ios::binary);
+    ifstream r("market.txt",ios::in | ios::binary);
     char found='N';
      farmer f;
     if(!r)
@@ -496,12 +493,12 @@ void SEARCH_KisanId()
         cout<<endl<<"FILE DOESN'T EXIST!!!!!";
         return;
     }
-    int KisanId1;
+    int KISANID1;
     cout<<"Enter ID whose record is to be searched: ";
-    cin>>KisanId1;
+    cin>>KISANID1;
     while(r.read((char*)&f,sizeof(f)))
     {
-        if(f.CheckKisanId()==KisanId1)
+        if(f.CheckKISANID()==KISANID1)
         {
             cout<<"INFORMATION OF THE SHOPPING DETAILS :";
             f.showCropData();
@@ -519,7 +516,7 @@ void SEARCH_KisanId()
 
 void SEARCH_USERNAME()
 {
-    ifstream r("record.txt",ios::in | ios::binary);
+    ifstream r("market.txt",ios::in | ios::binary);
     char found='N';
      farmer f;
     if(!r)
@@ -554,16 +551,17 @@ void SEARCH_USERNAME()
 void SHOPPING_SEARCH()
 {
     int s;
-    cout<<"\n                Search on the basis of :-                 \n\n ";
+    cout<<"*************************************************************************************************\n\n";
+    cout<<"                  SEARCH ON THE BASIS OF :                 \n\n ";
     cout<<"****************                               ********************\n\n";
-    cout<<"\n 1.KisanId";
+    cout<<"\n 1.KISANID";
     cout<<"\n 2.UserName";
 
     cin>>s;
     switch(s)
     {
     case 1:
-        SEARCH_KisanId();
+        SEARCH_KISANID();
         break;
     case 2:
         SEARCH_USERNAME();
@@ -577,16 +575,16 @@ void SHOPPING_SEARCH()
 
 void DELETION1()
 {
-    ifstream fmain("record.txt", ios::binary | ios::in);
+    ifstream fmain("market.txt", ios::binary | ios::in);
     ofstream ftemp("temp.txt", ios::binary | ios::out);
     farmer f;
-    int KisanId1;
+    int KISANID1;
     cout<<"Enter ID whose record is to be deleted:";
-    cin>>KisanId1;
+    cin>>KISANID1;
     char found='N';
     while(fmain.read((char*)&f,sizeof(f)))
     {
-        if(f.CheckKisanId()!=KisanId1)
+        if(f.CheckKISANID()!=KISANID1)
         {
             ftemp.write((char*)&f,sizeof(f));
         }
@@ -605,15 +603,15 @@ void DELETION1()
     }
     fmain.close();
     ftemp.close();
-    remove("record.txt");
-    rename("temp.txt","record.txt");
+    remove("market.txt");
+    rename("temp.txt","market.txt");
 }
 
 
 
 void DELETION2()
 {
-    ifstream fmain("record.txt", ios::binary | ios::in);
+    ifstream fmain("market.txt", ios::binary | ios::in);
     ofstream ftemp("temp.txt", ios::binary | ios::out);
     farmer f;
     char un[50];
@@ -642,15 +640,17 @@ void DELETION2()
     }
     fmain.close();
     ftemp.close();
-    remove("record.txt");
-    rename("temp.txt","record.txt");
+    remove("market.txt");
+    rename("temp.txt","market.txt");
 }
 
 
 void DELETION()
 {
     int s;
-    cout<<"           \n Delete on the basis of :-      \n\n  ";
+    cout<<"************************************************************************************************\n\n";
+    cout<<"                  DELETE ON THE BASIS OF :      \n\n  ";
+    cout<<"**************                               ****************************************************\n\n ";
     
     cout<<"\n 1.User ID";
     cout<<"\n 2.User Name";
@@ -672,14 +672,12 @@ void DELETION()
 
 
 
-void marketplace()
+void MARKETPLACE()
 {
 	int c;
-	    cout<<"***********************************************************************\n\n\n";
-	    cout<<endl;
-		cout<<"                    Welcome to Market Place                          \n\n\n "<<endl;
-		
-		cout<<"****************                               *************************\n\n\n"<<endl;
+	    cout<<"***********************************************************************\n\n";
+		cout<<"                    WELCOME TO MARKET PLACE                             \n\n ";
+		cout<<"****************                               ************************* \n\n";
 		cout<<"1. Crop Sale "<<endl;
 		cout<<"2. Manure Byeing "<<endl;
 	    cout<<"3. Check your shopping Details "<<endl;
@@ -707,7 +705,7 @@ void marketplace()
 	void TOTAL_REC()
 {
     farmer f;
-    ifstream Rt("record.txt",ios::in|ios::binary);
+    ifstream Rt("market.txt",ios::in|ios::binary);
      if(!Rt)
     {
         cout<<"File Reading Error"<<endl;
@@ -723,7 +721,7 @@ void marketplace()
 }
 
 
-void mfdetail()//  mf means marginal farmer agriculture land up to 1 hectare
+void MFDETAIL()//  mf means marginal farmer agriculture land up to 1 hectare
 {
 
 ifstream file;
@@ -735,7 +733,9 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Marginal Farmer "<<endl;
+	cout<<"******************************************************************************************************\n\n";
+	cout<<"                      DETAILS OF MARGINAL FARMER   \n\n";
+	cout<<"*****************                                    *************************************************\n\n";
 	string line;
 	while(file.good())
 {
@@ -750,7 +750,7 @@ else
 
 }
 
-void sfdetail()// sf means small farmer agricultural land of more than 1 hectare and <2 hectare
+void SFDETAIL()// sf means small farmer agricultural land of more than 1 hectare and <2 hectare
 {
    ifstream file;
 file.open("smallfarmer.txt");
@@ -761,7 +761,10 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Small Farmer "<<endl;
+	cout<<"******************************************************************************************************\n\n";
+	cout<<"                      DETAILS OF SMALL FARMER   \n\n";
+	cout<<"*****************                                    *************************************************\n\n";
+	//cout<<"DETAILS OF SMALL FARMER  "<<endl;
 	string line;
 	while(file.good())
 {
@@ -774,7 +777,7 @@ else
 }
 }
 
-void smfdetail() // smf means semi medium farmer Agricultural land 2-4 hectare
+void SMFDETAIL() // smf means semi medium farmer Agricultural land 2-4 hectare
 {
 
 ifstream file;
@@ -786,7 +789,9 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Marginal Farmer "<<endl;
+	cout<<"******************************************************************************************************\n\n";
+	cout<<"                      DETAILS OF SEMI MEDIUM FARMER   \n\n";
+	cout<<"*****************                                    *************************************************\n\n";
 	string line;
 	while(file.good())
 {
@@ -799,7 +804,7 @@ else
 }
 }
 
-void mediumfdetail()// mediumf means medium farmer agricultural land of 4-10 hectare
+void MEDIUMFDETAIL()// mediumf means medium farmer agricultural land of 4-10 hectare
 {
 ifstream file;
 file.open("mediumfarmer.txt");
@@ -810,7 +815,10 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Marginal Farmer "<<endl;
+	cout<<"******************************************************************************************************\n\n";
+	cout<<"                      DETAILS OF MEDIUM FARMER   \n\n";
+	cout<<"*****************                                    *************************************************\n\n";
+	//cout<<"DETAILS OF MEDIUM FARMER "<<endl;
 	string line;
 	while(file.good())
 {
@@ -824,7 +832,7 @@ else
 }
 
 
-void lfdetail()// lf meams large farmer agricultural land of more than 10 hectare
+void LFDETAIL()// lf meams large farmer agricultural land of more than 10 hectare
 {
 
 ifstream file;
@@ -836,7 +844,10 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Marginal Farmer "<<endl;
+	cout<<"******************************************************************************************************\n\n";
+	cout<<"                      DETAILS OF LARGE FARMER   \n\n";
+	cout<<"*****************                                    *************************************************\n\n";
+	//cout<<"DETAILS OF LARGE FARMER "<<endl;
 	string line;
 	while(file.good())
 {
@@ -852,27 +863,27 @@ else
 void FARMER_DETAIL()
 {
 	int c;
-	cout<<"*********************************************************************"<<endl;
-	cout<<endl;
-	cout<<"*************  Welcome to Details of farmer Portal   ****************\n\n"<<endl;
+	cout<<"****************************************************************************************************\n\n";
+	cout<<"                     WELCOME TO DETAILS OF FARMER PORTAL                                            \n\n";
+	cout<<"*****************                                           ****************************************\n\n";
 	cout<<"1. Details of Marginal farmer "<<endl;
 	cout<<"2. Details of Small farmer "<<endl;
 	cout<<"3. Details of Semi Medium farmer "<<endl;
 	cout<<"4. Details of Medium farmer "<<endl;
 	cout<<"5. Details of Large farmer "<<endl;
-	cout<<"which option do you belong to---";
+	cout<<"which Category do you belong to in the appropriate category ---";
 	cin>>c;
 	switch(c)
 	{
-		case 1:mfdetail();
+		case 1:MFDETAIL();
 		break;
-		case 2:sfdetail();
+		case 2:SFDETAIL();
 		break;
-		case 3:smfdetail();
+		case 3:SMFDETAIL();
 		break;
-		case 4:mediumfdetail();
+		case 4:MEDIUMFDETAIL();
 		break;
-		case 5:lfdetail();
+		case 5:LFDETAIL();
 		break;
 		default:
 			cout<<"Option not found";
@@ -924,7 +935,7 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Marginal Farmer "<<endl;
+	cout<<"DETAILS OF NATIONAL FARMING MARKET SCHEME "<<endl;
 	string line;
 	while(file.good())
 {
@@ -948,7 +959,7 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of soil health card "<<endl;
+	cout<<"DETAILS OF SOIL HEALTH CARED "<<endl;
 	string line;
 	while(file.good())
 {
@@ -972,7 +983,7 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of organic farming "<<endl;
+	cout<<"DETAILS OF ORGANIC FARMING "<<endl;
 	string line;
 	while(file.good())
 {
@@ -998,7 +1009,7 @@ if(!file.is_open())
 }
 else
 {
-	cout<<"Details of Pension Scheme : "<<endl;
+	cout<<"DETAILS OF PENSION SCHEME "<<endl;
 	string line;
 	while(file.good())
 {
@@ -1009,32 +1020,30 @@ else
 }
 
 }
-       cout<<" Apply for pension scheme :"<<endl;
+       cout<<" APPLY FOR PENSION SCHEME "<<endl;
 	    int age;
 	    string name;
-	    cout<<" Eligieblity for pension yojna :"<<endl;
+	    cout<<"  ELIGIEBLITY FOR PENSION SCHEME :"<<endl;
 	    cout<<"Enter your name :";
 	    cin>>name;
 	    cout<<"Enter your age : ";
 	    cin>>age;
 	    if(age>=60)
         {
-            cout<<"you are eligieble for pension yojana "<<endl;
+            cout<<" YOU ARE ELIGIEBLE FOR PENSION SCHEME "<<endl;
         }
         else
         {
-            cout<<"You are not eligieble for pension yojna"<<endl;
+            cout<<"YOU ARE NOT ELIGIEBLE FOR PENSION SCHEME "<<endl;
         }
 	}
 
 void schemeset()//collection of all above scheme
 {
 	int ch;
-    cout<<"***********************************************************************\n\n\n";
-    cout<<endl;
-	cout<<"                  welcome to Scheme sectiom                               \n\n "<<endl;
-	cout<<endl;
-	cout<<"****************                              **************************"<<endl;
+    cout<<"***********************************************************************\n\n";
+	cout<<"                   WELCOME TO SCHEME PORTAL                              \n\n";
+	cout<<"****************                              ***************************\n\n";
 	cout<<"1. crop insurance scheme"<<endl;
 	cout<<"2. National farming market scheme"<<endl;
 	cout<<"3. organic farming"<<endl;
@@ -1065,12 +1074,12 @@ void ADMIN_PANEL()
 {
 	
 	int c;
-	        cout<<"***********************************************************************\n\n\n";
-	        cout<<endl;
-	cout<< "******************  HELLO THIS IS ADMIN PANEL  ******************"<<endl;
-	cout<<endl;
+	cout<<"************************************************************************************************\n\n";
+	cout<< "                        HELLO THIS IS ADMIN PANEL                                               \n\n";
+	cout<<"******************                                       *****************************************\n\n";
 	cout<<"1. Delete Farmer Shopping Details "<<endl;
 	cout<<"2. Total Number of Farmer Shopping "<<endl;
+	cout<<"3. Check farmer's shopping Details "<<endl;
 	cout<<"Enter Your choice---- ";
 	cin>>c;
 	switch(c)
@@ -1081,6 +1090,8 @@ void ADMIN_PANEL()
 			case 2:
 	        TOTAL_REC();
 	        break;
+	        case 3: SHOPPING_SEARCH();
+			break;
 	        default:
 	        	cout<<"option is not valid"<<endl;
 	}
@@ -1089,15 +1100,14 @@ void ADMIN_PANEL()
 	
 }
 
-
 int main()
 {
+	
         int choice;
-        cout<<"*******************************************************************************************************\n\n\n";
+        cout<<"******************************************************************************************\n\n";
         cout<<"         WELCOME TO MODERN FARMING MANAGEMENT SYSTEM PROJECT                               \n\n";
-       
-	    cout<<"*******************        MENU        *****************************************************************\n\n";
-        cout<<"1.LOGIN"<<endl;
+	    cout<<"*******************        HOME      *******************************************************\n\n";
+        cout<<"1.SIGN_IN"<<endl;
         cout<<"2.REGISTER"<<endl;
         cout<<"3.FORGOT PASSWORD (or) USERNAME"<<endl;
         cout<<"4.Exit"<<endl;
@@ -1107,13 +1117,13 @@ int main()
         switch(choice)
         {
                 case 1:
-                        login();
+                        SIGN_IN();
                         break;
                 case 2:
-                        registr();
+                        SIGN_UP();
                         break;
                 case 3:
-                        forgot();
+                        FORGOT();
                         break;
                 case 4:
 
@@ -1127,7 +1137,7 @@ int main()
         
 }
 
-void login()
+void SIGN_IN()
 {
         int count;
         string user,pass,u,p;
@@ -1151,10 +1161,7 @@ void login()
         input.close();
         if(count==1)
         {
-                cout<<"\nHello"<<user<<"\nLOGIN SUCESSFULL !!!\n";
-                
-                
-                
+                cout<<"\nHello  !!\n"<<user<<"\nSIGN_IN SUCESSFULL !!!\n";
                 
                 int option;
   
@@ -1165,11 +1172,9 @@ void login()
 	{
 
 	    //cout<<"manue"<<endl;
-	    cout<<"*******************************************************************************************"<<endl;
-	    cout<<endl;
-	    cout<<"***************  WELCOME TO MODERN FARMING MANAGEMENT SYSTEM PROJECT   ********************"<<endl;
-	    cout<<endl;
-	
+	    cout<<"*******************************************************************************************\n\n";
+	    cout<<"                    WELCOME TO MODERN FARMING MANAGEMENT SYSTEM PROJECT                         \n\n";
+	    cout<<"*****************                  DASHBOARD                                 *****************\n\n";
         cout<<"1. Details of farmer"<<endl;
         cout<<"2. Government Scheme"<<endl;
         cout<<"3. Market Place  "<<endl;
@@ -1188,7 +1193,7 @@ void login()
                 break;
                 case 2:s.schemeset();
                 break;
-                case 3:marketplace();
+                case 3:MARKETPLACE();
                 break;
                 case 4:LABOURSFOUNDPORTAL();
                 break;
@@ -1215,12 +1220,12 @@ void login()
         }
         else
         {
-                cout<<"\nLOGIN ERROR\nPlease check your username and password\n";
+                cout<<"\nSIGN_IN ERROR\nPlease check your username and password\n";
                 main();
         }
 }
 
-void registr()
+void SIGN_UP()
 {
         
         string reguser,regpass,ru,rp;
@@ -1234,17 +1239,17 @@ void registr()
         ofstream reg("database.txt",ios::app);
         reg<<reguser<<' '<<regpass<<endl;
         system("cls");
-        cout<<"\nRegistration Sucessful\n";
+        cout<<"\nSIGN_UP Sucessfully \n";
         main();
         
         
 }
 
-void forgot()
+void FORGOT()
 {
         int ch;
         system("cls");
-        cout<<"Forgotten ? We're here for help\n";
+        cout<<"forgotten ? We're here for help\n";
         cout<<"1.Search your id by username"<<endl;
         cout<<"2.Search your id by password"<<endl;
         cout<<"3.Main menu"<<endl;
@@ -1279,7 +1284,7 @@ void forgot()
                         }
                         else
                         {
-                                cout<<"\nSorry, Your KisanId is not found in our database\n";
+                                cout<<"\nSorry, Your KISANID is not found in our database\n";
                                 cout<<"\nPlease kindly contact your system administrator for more details \n";
                                 cin.get();
                                 cin.get();
@@ -1331,6 +1336,9 @@ void forgot()
                 }
                 default:
                         cout<<"Sorry, You entered wrong choice. Kindly try again"<<endl;
-                        forgot();
+                        FORGOT();
         }
 }
+
+
+	
